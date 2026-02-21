@@ -1,0 +1,58 @@
+@use '../../../styles/colors' as color;
+
+.wrapper {
+  width: 100%;
+  background-color: color.$bg-primary;
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  max-width: 1400px;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+
+  &_logo {
+    height: 64px;
+    width: 64px;
+    background-color: white;
+  }
+
+  &_selection {
+    display: flex;
+    align-items: center;
+    color: color.$font-primary;
+    font-size: 18px;
+    font-weight: 200;
+    gap: 64px;
+
+    @media (max-width: 440px) {
+      gap: 32px;
+    }
+  }
+
+  &_option {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 300ms;
+
+    &:hover {
+      color: color.$font-secondary;
+    }
+  }
+
+  &_empty {
+    height: 64px;
+    width: 64px;
+
+    @media (max-width: 640px) {
+      display: none;
+    }
+  }
+}

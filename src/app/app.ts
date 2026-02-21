@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './scss/app.scss'
+  styleUrl: './styles/app.scss'
 })
 export class App {
   protected readonly title = signal('autoankauf');
