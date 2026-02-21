@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+@use './app/styles/fonts' as font;
+@use './app/styles/colors' as color;
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/primary/roboto.ttf');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futuralight';
+  src: url('/fonts/secondary/futuralight.ttf');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+html,
+body {
+  font-family: font.$font-primary;
+  margin: 0;
+  scroll-behavior: smooth;
+}
