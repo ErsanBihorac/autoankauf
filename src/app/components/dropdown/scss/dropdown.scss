@@ -1,0 +1,48 @@
+@use '../../../styles/colors' as color;
+
+.dropdown {
+  position: relative;
+  width: 260px;
+  font-family: sans-serif;
+  z-index: 1;
+
+  &_button {
+    padding: 12px 14px;
+    border: 1px solid color.$font-primary;
+    color: color.$font-primary;
+    width: 300px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_arrow {
+    height: 24px;
+    width: 24px;
+  }
+
+  &_menu {
+    position: absolute;
+    width: 330px;
+    margin-top: 5px;
+    padding: 5px 0;
+    list-style: none;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+    max-height: 180px;
+    overflow-y: auto;
+
+    li {
+      padding: 10px 14px;
+      cursor: pointer;
+
+      &:hover {
+        background: #f3f4f6;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div class="dropdown" (click)="toggle()">
+  <div class="dropdown_button">
+    {{ selected?.name || 'Option wählen' }}
+    <img class="dropdown_arrow" src="/img/chevron-down.svg">
+  </div>
+
+  <ul class="dropdown_menu" *ngIf="open">
+    <li *ngFor="let option of options" (click)="select(option, $event)">
+      {{ option.name }}
+    </li>
+  </ul>
+</div>

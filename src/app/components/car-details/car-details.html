@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <form action="" class="form">
+
+    <div class="form_pair">
+      <span>Von welcher Marke ist dein Auto?</span>
+      <app-dropdown [options]="carMakes" (selectedOption)="this.carService.setCarMake($event)"></app-dropdown>
+    </div>
+
+    <div class="form_pair">
+      <span>Welches Modell?</span>
+      <app-dropdown [options]="carModel" (selectedOption)=""></app-dropdown>
+    </div>
+
+    <div class="form_pair">
+      <span>In welchem Jahr wurde es zugelassen?</span>
+      <input type="text" placeholder="Jahr auswählen" />
+    </div>
+
+    <div class="form_pair">
+      <span>Welche Bauform hat es?</span>
+      <div>
+        <input type="text" placeholder="Cabrio" />
+        <input type="text" placeholder="Coupe" />
+      </div>
+    </div>
+
+    <div class="form_pair">
+      <span>Welchen Kraftstoff tankt es?</span>
+      <input type="text" placeholder="Kraftstoff auswählen" />
+    </div>
+
+    <div class="form_pair">
+      <span>Um welche Modellvariante handelt es sich?</span>
+      <input type="text" placeholder="Modellvariante auswählen" />
+    </div>
+
+    <div class="form_pair">
+      <span>Wieviel PS hat es?</span>
+      <input type="text" placeholder="PS auswählen" />
+    </div>
+
+    <div class="form_pair">
+      <span>Welches Getriebe hat es?</span>
+      <div>
+        <input type="text" placeholder="Halbautomatik" />
+        <input type="text" placeholder="Schaltgetriebe" />
+      </div>
+    </div>
+
+    <div class="form_pair">
+      <span>Wie ist der Kilometerstand?</span>
+      <input type="text" placeholder="Kilometerstand" />
+    </div>
+
+    <div>Anfrage senden</div>
+  </form>
+</div>
