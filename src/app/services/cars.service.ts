@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DropdownOption } from '../interfaces/dropdown-option.interface';
 import { CarRequestPayload } from '../interfaces/car-request-payload.interface';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class CarService {
-  private apiUrl = 'http://localhost:8000/api'
+  private apiUrl = environment.backendUrl 
   private http = inject(HttpClient);
 
   private selectedCarMake = new BehaviorSubject<DropdownOption | null>(null);

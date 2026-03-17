@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <section class="contact">
+    <h3>Du hast ein anderes anliegen? Dann schreib uns doch einfach.</h3>
+
+    <div class="contact_form">
+      <label class="contact_field">
+        <span>E-Mail Adresse</span>
+        <input type="email" placeholder="mustermann@gmail.com" name="email" [(ngModel)]="email" />
+      </label>
+
+      <label class="contact_field">
+        <span>Telefon (optional)</span>
+        <input type="tel" placeholder="+49 170 0000000" name="phone" [(ngModel)]="phone" />
+      </label>
+
+      <label class="contact_field">
+        <span>Nachricht</span>
+        <textarea rows="4" placeholder="Deine Nachricht an uns..." name="message" [(ngModel)]="message"></textarea>
+      </label>
+
+      <button type="button" class="contact_submit" [disabled]="!canSubmit" (click)="submit()">Nachricht senden</button>
+    </div>
+  </section>
+</div>

@@ -3,7 +3,8 @@
 
 .wrapper {
   width: 100%;
-  background-color: color.$bg-muted;
+  background-image:
+    linear-gradient(0deg, rgba(27, 40, 54, 0.98) 0%, rgba(17, 25, 34, 0.96) 60%, rgba(12, 18, 26, 0.98) 100%);
   display: flex;
   justify-content: center;
   padding: 120px 0px;
