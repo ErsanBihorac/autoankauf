@@ -59,7 +59,6 @@ export class CarDetails {
 
   ngOnInit() {
     this.carService.getCarMakes().subscribe((data) => {
-      console.log(data);
       this.carMakes = data;
 
       this.carModels = [];
