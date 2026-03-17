@@ -2,19 +2,20 @@
 
 .dropdown {
   position: relative;
-  width: 260px;
-  font-family: sans-serif;
-  z-index: 1;
+  width: 100%;
+  font-family: inherit;
 
   &_button {
     padding: 12px 14px;
-    border: 1px solid color.$font-primary;
+    border: 1px solid color.$border-subtle;
     color: color.$font-primary;
-    width: 300px;
+    width: 100%;
+    box-sizing: border-box;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+    background-color: color.$bg-muted;
   }
 
   &_arrow {
@@ -24,14 +25,16 @@
 
   &_menu {
     position: absolute;
-    width: 330px;
+    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
     margin-top: 5px;
     padding: 5px 0;
     list-style: none;
-    background: white;
-    border: 1px solid #ccc;
+    background: color.$bg-surface;
+    border: 1px solid color.$border-subtle;
     border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 
     max-height: 180px;
     overflow-y: auto;
@@ -39,10 +42,20 @@
     li {
       padding: 10px 14px;
       cursor: pointer;
+      color: color.$font-primary;
 
       &:hover {
-        background: #f3f4f6;
+        background: rgba(255, 255, 255, 0.06);
       }
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .dropdown_button {
+      cursor: not-allowed;
     }
   }
 }

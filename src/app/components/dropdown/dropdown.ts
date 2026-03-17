@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownOption } from '../../interfaces/dropdown-option.interface';
 
@@ -9,23 +9,40 @@ import { DropdownOption } from '../../interfaces/dropdown-option.interface';
   templateUrl: './dropdown.html',
   styleUrl: './scss/dropdown.scss',
 })
-export class Dropdown {
-@Input() options: DropdownOption[] = [];
-@Output() selectedOption = new EventEmitter<DropdownOption>();
-open = false;
-selected: DropdownOption | null = null;
+export class Dropdown implements OnChanges {
+  @Input() options: DropdownOption[] = [];
+  @Input() disabled = false;
+  @Output() selectedArrayIndex = new EventEmitter<number>();
+  open = false;
+  selected: DropdownOption | undefined = undefined;
 
-toggle() {
-  this.open = !this.open;
-}
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['options'] && !changes['options'].firstChange) {
+      this.selected = undefined;
+      this.open = false;
+    }
 
-select(option: DropdownOption, event: Event) {
-  event.stopPropagation();
-  this.selected = option;
-  if (this.selected){
-    this.selectedOption.emit(this.selected);
-    console.log(this.selected);
-  } 
-  this.open = false;
-}
+    if (changes['disabled']?.currentValue) {
+      this.open = false;
+    }
+  }
+
+  toggle() {
+    if (this.disabled) {
+      return;
+    }
+    this.open = !this.open;
+  }
+
+  select(option: DropdownOption, event: Event, i: number) {
+    if (this.disabled) {
+      return;
+    }
+    event.stopPropagation();
+    this.selected = option;
+    if (this.selected) {
+      this.selectedArrayIndex.emit(i);
+    }
+    this.open = false;
+  }
 }

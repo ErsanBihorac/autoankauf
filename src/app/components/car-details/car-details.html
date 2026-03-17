@@ -3,55 +3,59 @@
 
     <div class="form_pair">
       <span>Von welcher Marke ist dein Auto?</span>
-      <app-dropdown [options]="carMakes" (selectedOption)="this.carService.setCarMake($event)"></app-dropdown>
+      <app-dropdown [options]="carMakes" (selectedArrayIndex)="setCarModel($event)"></app-dropdown>
     </div>
 
     <div class="form_pair">
       <span>Welches Modell?</span>
-      <app-dropdown [options]="carModel" (selectedOption)=""></app-dropdown>
+      <app-dropdown [options]="carModels" [disabled]="carModels.length === 0" (selectedArrayIndex)="setCarGeneration($event)"></app-dropdown>
     </div>
 
     <div class="form_pair">
-      <span>In welchem Jahr wurde es zugelassen?</span>
-      <input type="text" placeholder="Jahr auswählen" />
+      <span>Welches Generation</span>
+      <app-dropdown [options]="carGenerations" [disabled]="carGenerations.length === 0" (selectedArrayIndex)="setCarSeries($event)"></app-dropdown>
     </div>
 
     <div class="form_pair">
-      <span>Welche Bauform hat es?</span>
-      <div>
-        <input type="text" placeholder="Cabrio" />
-        <input type="text" placeholder="Coupe" />
-      </div>
+      <span>Welches Serie</span>
+      <app-dropdown [options]="carSeries" [disabled]="carSeries.length === 0" (selectedArrayIndex)="setCarTrims($event)"></app-dropdown>
     </div>
 
     <div class="form_pair">
-      <span>Welchen Kraftstoff tankt es?</span>
-      <input type="text" placeholder="Kraftstoff auswählen" />
+      <span>Welches Trim</span>
+      <app-dropdown [options]="carTrims" [disabled]="carTrims.length === 0" (selectedArrayIndex)="setCarTrimIndex($event)"></app-dropdown>
     </div>
 
     <div class="form_pair">
-      <span>Um welche Modellvariante handelt es sich?</span>
-      <input type="text" placeholder="Modellvariante auswählen" />
-    </div>
-
-    <div class="form_pair">
-      <span>Wieviel PS hat es?</span>
-      <input type="text" placeholder="PS auswählen" />
-    </div>
-
-    <div class="form_pair">
-      <span>Welches Getriebe hat es?</span>
-      <div>
-        <input type="text" placeholder="Halbautomatik" />
-        <input type="text" placeholder="Schaltgetriebe" />
+      <span>Welcher Kraftstoff?</span>
+      <div class="form_options">
+        <label class="form_option" *ngFor="let fuel of fuelOptions">
+          <input type="radio" name="fuelType" [value]="fuel" [(ngModel)]="fuelType" />
+          <span>{{ fuel }}</span>
+        </label>
       </div>
     </div>
 
     <div class="form_pair">
       <span>Wie ist der Kilometerstand?</span>
-      <input type="text" placeholder="Kilometerstand" />
+      <input type="text" placeholder="000..." name="mileage" [(ngModel)]="mileage" maxlength="6" inputmode="numeric" />
     </div>
 
-    <div>Anfrage senden</div>
+    <div class="form_pair">
+      <span>Wie lautet die Fahrgestelltnummer?</span>
+      <input type="text" placeholder="000..." name="vin" [(ngModel)]="vin" maxlength="17" inputmode="numeric" />
+    </div>
+
+    <div class="form_pair">
+      <span>Dein Name:</span>
+      <input type="text" placeholder="Max" name="fullName" [(ngModel)]="fullName" />
+    </div>
+
+    <div class="form_pair">
+      <span>Deine E-Mail Adresse</span>
+      <input type="email" placeholder="mustermann@gmail.com" name="email" [(ngModel)]="email" />
+    </div>
+
+    <button type="button" class="form_submit" [disabled]="!canSubmit || submitting" (click)="submit()">Anfrage senden</button>
   </form>
 </div>
