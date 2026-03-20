@@ -18,7 +18,14 @@
         <textarea rows="4" placeholder="Deine Nachricht an uns..." name="message" [(ngModel)]="message"></textarea>
       </label>
 
-      <button type="button" class="contact_submit" [disabled]="!canSubmit" (click)="submit()">Nachricht senden</button>
+      <button
+        type="button"
+        class="contact_submit"
+        [disabled]="!canSubmit || submitted"
+        (click)="submit()"
+      >
+        {{ submitted ? 'Nachricht gesendet!' : 'Nachricht senden' }}
+      </button>
     </div>
   </section>
 </div>

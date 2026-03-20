@@ -25,11 +25,12 @@ export class CarDetails {
   carTrims: CarTrim[] = [];
   mileage = '';
   vin = '';
-  fullName = '';
-  email = '';
+  customerName = '';
+  customerMail = '';
   fuelType = '';
   fuelOptions = ['Benzin', 'Diesel', 'Hybrid', 'Elektro', 'LPG', 'CNG'];
   submitting = false;
+  submitted = false;
   selectedMakeIndex: number | null = null;
   selectedModelIndex: number | null = null;
   selectedGenerationIndex: number | null = null;
@@ -39,7 +40,7 @@ export class CarDetails {
   get canSubmit(): boolean {
     const mileageValue = String(this.mileage).trim();
     const vinValue = String(this.vin).trim();
-    const emailValue = String(this.email).trim();
+    const emailValue = String(this.customerMail).trim();
     const mileageValid = /^\d{1,6}$/.test(mileageValue);
     const vinValid = /^\d{17}$/.test(vinValue);
     const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
@@ -52,7 +53,7 @@ export class CarDetails {
       mileageValid &&
       vinValid &&
       this.fuelType.trim().length > 0 &&
-      this.fullName.trim().length > 0 &&
+      this.customerName.trim().length > 0 &&
       emailValid
     );
   }
@@ -121,13 +122,13 @@ export class CarDetails {
   }
 
   submit() {
-    if (!this.canSubmit || this.submitting) {
+    if (!this.canSubmit) {
       return;
     }
 
     const mileageValue = String(this.mileage).trim();
     const vinValue = String(this.vin).trim();
-    const emailValue = String(this.email).trim();
+    const emailValue = String(this.customerMail).trim();
 
     const make = this.selectedMakeIndex !== null ? this.carMakes[this.selectedMakeIndex] : null;
     const model = this.selectedModelIndex !== null ? this.carModels[this.selectedModelIndex] : null;
@@ -148,17 +149,15 @@ export class CarDetails {
       carMileage: Number(mileageValue),
       carFuelType: this.fuelType.trim(),
       vin: vinValue,
-      customerName: this.fullName.trim(),
+      customerName: this.customerName.trim(),
       customerMail: emailValue,
     };
 
-    this.submitting = true;
+    this.submitted = true;
     this.carService.submitCarRequest(payload).subscribe({
       next: () => {
-        this.submitting = false;
       },
       error: () => {
-        this.submitting = false;
       },
     });
   }

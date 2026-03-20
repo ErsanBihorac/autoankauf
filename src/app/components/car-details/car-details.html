@@ -1,6 +1,5 @@
-<div class="wrapper">
+<div #sellNow class="wrapper" id="sellNow">
   <form action="" class="form">
-
     <div class="form_pair">
       <span>Von welcher Marke ist dein Auto?</span>
       <app-dropdown [options]="carMakes" (selectedArrayIndex)="setCarModel($event)"></app-dropdown>
@@ -48,14 +47,21 @@
 
     <div class="form_pair">
       <span>Dein Name:</span>
-      <input type="text" placeholder="Max" name="fullName" [(ngModel)]="fullName" />
+      <input type="text" placeholder="Max" name="customerName" [(ngModel)]="customerName" />
     </div>
 
     <div class="form_pair">
       <span>Deine E-Mail Adresse</span>
-      <input type="email" placeholder="mustermann@gmail.com" name="email" [(ngModel)]="email" />
+      <input type="email" placeholder="mustermann@gmail.com" name="email" [(ngModel)]="customerMail" />
     </div>
 
-    <button type="button" class="form_submit" [disabled]="!canSubmit || submitting" (click)="submit()">Anfrage senden</button>
+    <button
+      type="button"
+      class="form_submit"
+      [disabled]="!canSubmit || submitted"
+      (click)="submit()"
+    >
+      {{ submitted ? 'Anfrage gesendet!' : 'Anfrage senden' }}
+    </button>
   </form>
 </div>

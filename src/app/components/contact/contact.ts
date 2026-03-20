@@ -14,6 +14,7 @@ export class Contact {
   email = '';
   phone = '';
   message = '';
+  submitted = false;
 
   get canSubmit(): boolean {
     const emailValue = this.email.trim();
@@ -26,21 +27,19 @@ export class Contact {
     if (!this.canSubmit) {
       return;
     }
-    await this.sendRequest(this.email.trim(), this.phone.trim(), this.message.trim());
-    console.log('Contact form submitted', {
-      email: this.email.trim(),
-      phone: this.phone.trim(),
-      message: this.message.trim(),
-    });
+    this.submitted = true;
+    const ok = await this.sendRequest(this.email.trim(), this.phone.trim(), this.message.trim());
   }
 
-  async sendRequest(email: string, phone: string, message: string) {
+  async sendRequest(email: string, phone: string, message: string): Promise<boolean> {
     try {
-      const response: any = await firstValueFrom(
+      await firstValueFrom(
         this.mailService.sendMail(email, phone, message)
       );
+      return true;
     } catch (error) {
       console.log('HTTP Error:', error);
+      return false;
     }
   }
 
